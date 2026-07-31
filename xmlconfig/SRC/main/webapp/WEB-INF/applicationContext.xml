@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="student" class="com.tuto.Student" scope="prototype">
+    <property name="name" value="John"/>
+    <property name="number" value="1"/>
+    <property name="email" value="john@gmail.com"/>
+    <property name="e" ref="ecole"/>
+       
+</bean>
+
+<bean id="ecole" class="com.tuto.Ecole">
+    <property name="nom" value="ITU"/>
+</bean>
+
+<bean id="utilDB" class="main.java.DAO.UtilDB">
+    <property name="URL" value="jdbc:mysql://localhost:3306/BANK"/>
+    <property name="USER" value="root"/>
+    <property name="PASSWORD" value=""/>
+</bean>
+<bean id="chequeDAO" class="main.java.DAO.ChequeDAO">
+    <property name="utilDB" ref="utilDB"/>
+</bean>
+<bean id="chequeService" class="main.java.service.ChequeService">
+    <property name="chequeDAO" ref="chequeDAO"/>
+</bean>
+
+</beans>
+
